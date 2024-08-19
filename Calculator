@@ -1,0 +1,119 @@
+package com.example.calculator;
+
+public class Calculator {
+
+    private double lastResult = 0.0;
+
+    // 加法
+    public double add(double a, double b) {
+        lastResult = a + b;
+        return lastResult;
+    }
+
+    // 减法
+    public double subtract(double a, double b) {
+        lastResult = a - b;
+        return lastResult;
+    }
+
+    // 乘法
+    public double multiply(double a, double b) {
+        lastResult = a * b;
+        return lastResult;
+    }
+
+    // 除法
+    public double divide(double a, double b) {
+        if (b == 0) {
+            throw new ArithmeticException("Error: Division by zero is not allowed.");
+        }
+        lastResult = a / b;
+        return lastResult;
+    }
+
+    // 幂运算
+    public double power(double base, double exponent) {
+        if (base == 0 && exponent == 0) {
+            throw new ArithmeticException("Error: 0^0 is undefined.");
+        }
+        lastResult = Math.pow(base, exponent);
+        return lastResult;
+    }
+
+    // 平方根
+    public double sqrt(double a) {
+        if (a < 0) {
+            throw new ArithmeticException("Error: Square root of a negative number is not allowed.");
+        }
+        lastResult = Math.sqrt(a);
+        return lastResult;
+    }
+
+    // 归零
+    public void reset() {
+        lastResult = 0.0;
+    }
+
+    // 获取最后结果
+    public double getLastResult() {
+        return lastResult;
+    }
+
+    public static void main(String[] args) {
+        Calculator calculator = new Calculator();
+
+        try {
+            // 测试加法
+            System.out.println("2.5 + 3.2 = " + calculator.add(2.5, 3.2));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试减法
+            System.out.println("5.5 - 2.3 = " + calculator.subtract(5.5, 2.3));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试乘法
+            System.out.println("4.2 * 3.3 = " + calculator.multiply(4.2, 3.3));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试除法
+            System.out.println("10.0 / 2.5 = " + calculator.divide(10.0, 2.5));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试幂运算
+            System.out.println("2 ^ 3 = " + calculator.power(2, 3));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试平方根
+            System.out.println("sqrt(16) = " + calculator.sqrt(16));
+
+            // 归零
+            calculator.reset();
+            System.out.println("After reset, last result = " + calculator.getLastResult());
+
+            // 测试负数的平方根
+            try {
+                System.out.println("sqrt(-4) = " + calculator.sqrt(-4));
+            } catch (ArithmeticException e) {
+                System.out.println(e.getMessage());
+            }
+
+        } catch (ArithmeticException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+}
